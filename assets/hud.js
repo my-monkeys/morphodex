@@ -30,10 +30,10 @@
   hud.style.setProperty("--mdx-accent", s.accent);
 
   hud.innerHTML =
-    '<a class="mdx-back" href="../index.html" aria-label="Retour à la galerie">' +
-      "&larr;&nbsp; <b>Morphodex</b></a>" +
-
     '<nav class="mdx-bar" aria-label="Navigation entre styles">' +
+      '<a class="mdx-home" href="../index.html" aria-label="Retour à la galerie Morphodex">' +
+        '<span class="mdx-home-dot" style="background:' + s.accent + '"></span>' +
+        '<span class="mdx-home-label">Morphodex</span></a>' +
       '<button class="mdx-nav mdx-prev" aria-label="Style précédent">&lsaquo;</button>' +
       '<div class="mdx-meta">' +
         '<span class="mdx-count">' + s.num + " / " + (total < 10 ? "0" + total : total) + "</span>" +

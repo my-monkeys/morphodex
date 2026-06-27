@@ -31,27 +31,16 @@
   text-decoration: none;
 }
 
-/* ── Retour galerie (haut-gauche) ───────────────────────────── */
-.mdx-back {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  display: inline-flex;
-  align-items: center;
+/* ── Retour galerie (intégré dans la barre, plus de pastille flottante) ── */
+.mdx-home {
   gap: 8px;
-  padding: 7px 13px 7px 11px;
-  background: var(--mdx-bg);
-  border: 1px solid var(--mdx-line);
-  border-radius: 999px;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.02em;
   color: var(--mdx-fg);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
-  transition: transform 0.18s ease, background 0.18s ease;
 }
-.mdx-back:hover { transform: translateY(-1px); background: #18181c; }
-.mdx-back b { color: var(--mdx-accent); font-weight: 600; }
+.mdx-home:hover { background: #18181c; }
+.mdx-home-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+.mdx-home-label { font-weight: 600; }
 
 /* ── Barre de navigation (bas-centre) ──────────────────────── */
 .mdx-bar {
@@ -226,11 +215,11 @@
 .mdx-sheet-foot button:hover { background: #18181c; }
 
 @media (max-width: 560px) {
-  .mdx-back { font-size: 10px; padding: 6px 11px; }
-  .mdx-meta .mdx-name { max-width: 38vw; }
+  .mdx-home-label { display: none; }
+  .mdx-meta .mdx-name { max-width: 40vw; }
   .mdx-bar > * { padding: 10px 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mdx-sheet, .mdx-scrim, .mdx-back, .mdx-nav { transition: none; }
+  .mdx-sheet, .mdx-scrim, .mdx-nav { transition: none; }
 }
