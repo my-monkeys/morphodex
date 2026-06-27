@@ -1,0 +1,430 @@
+/* ============================================================
+   Morphodex — coquille / galerie
+   Direction : catalogue de spécimens imprimé. Papier ivoire,
+   Fraunces en titrage, JetBrains Mono en étiquettes, filets fins.
+   Neutre & éditorial : ce sont les vignettes qui portent la couleur.
+   ============================================================ */
+:root {
+  --paper: #f1ede3;
+  --paper-2: #e9e4d6;
+  --ink: #1a1813;
+  --ink-soft: #5c574c;
+  --ink-faint: #8c8579;
+  --rule: #cdc6b5;
+  --display: "Fraunces", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --body: "Hanken Grotesk", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* ── Masthead ───────────────────────────────────────────────── */
+.masthead {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 56px 32px 20px;
+}
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.kicker--right { color: var(--ink-faint); }
+
+.wordmark {
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-size: clamp(64px, 15vw, 188px);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  margin: 18px 0 0;
+  color: var(--ink);
+}
+.masthead-rule {
+  height: 2px;
+  background: var(--ink);
+  margin: 22px 0 26px;
+}
+.lede {
+  max-width: 720px;
+  font-size: clamp(17px, 2.1vw, 21px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.lede em { font-family: var(--display); font-style: italic; font-weight: 500; color: var(--ink); }
+.ttag {
+  font-family: var(--mono);
+  font-size: 0.78em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--ink);
+}
+
+/* ── Catalogue ──────────────────────────────────────────────── */
+.catalog {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 38px auto 0;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 26px;
+}
+
+.plate {
+  --accent: #111;
+  position: relative;
+}
+.plate-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s ease, border-color 0.32s ease;
+}
+.plate-link:hover {
+  transform: translateY(-5px);
+  border-color: var(--ink);
+  box-shadow: 0 18px 38px rgba(26, 24, 19, 0.16);
+}
+.plate-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  padding: 11px 14px 9px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.plate-num::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Vignette (mini-UI re-skinnée) ──────────────────────────── */
+.thumb { position: relative; }
+.t-stage {
+  height: 168px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.t-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 214px;
+  padding: 15px;
+  border-radius: 12px;
+  color: #2a2a2a;
+}
+.t-bar { display: flex; gap: 5px; margin-bottom: 12px; }
+.t-bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(0, 0, 0, 0.22); display: block; }
+.t-title { height: 11px; width: 62%; border-radius: 4px; background: currentColor; opacity: 0.9; margin-bottom: 10px; }
+.t-line { height: 6px; width: 100%; border-radius: 3px; background: currentColor; opacity: 0.24; margin-bottom: 7px; }
+.t-line--s { width: 52%; margin-bottom: 14px; }
+.t-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--body);
+  letter-spacing: 0.01em;
+}
+
+.plate-meta { padding: 16px 16px 18px; border-top: 1px solid var(--rule); }
+.plate-name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 23px;
+  letter-spacing: -0.01em;
+  margin: 0 0 5px;
+}
+.plate-tag { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 14px; line-height: 1.4; }
+.plate-cta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ============================================================
+   Les 10 peaux de vignette
+   ============================================================ */
+
+/* 01 — Skeuomorphisme */
+.thumb--skeuomorphisme .t-stage { background: linear-gradient(#3c6b50, #2c5640); }
+.thumb--skeuomorphisme .t-card {
+  background: linear-gradient(#fcfcfd, #d6d9de);
+  border: 1px solid #adb1b8;
+  color: #2c2f35;
+  box-shadow: inset 0 1px 0 #fff, 0 3px 5px rgba(0, 0, 0, 0.45);
+}
+.thumb--skeuomorphisme .t-btn {
+  color: #fff;
+  background: linear-gradient(#5fa0ec, #2f6fc4);
+  border: 1px solid #295fa6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 2px 3px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 02 — Néomorphisme */
+.thumb--neomorphisme .t-stage { background: #e0e5ec; }
+.thumb--neomorphisme .t-card {
+  background: #e0e5ec;
+  color: #aab1bd;
+  box-shadow: -9px -9px 18px #ffffff, 9px 9px 18px #b9c0cc;
+}
+.thumb--neomorphisme .t-bar i { background: #e0e5ec; box-shadow: inset 1px 1px 2px #b9c0cc, inset -1px -1px 2px #fff; }
+.thumb--neomorphisme .t-btn {
+  background: #e0e5ec;
+  color: #6d5dfc;
+  box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px #b9c0cc;
+}
+
+/* 03 — Glassmorphisme */
+.thumb--glassmorphisme .t-stage { background: linear-gradient(135deg, #f857a6 0%, #5b6cff 100%); }
+.thumb--glassmorphisme .t-stage::before,
+.thumb--glassmorphisme .t-stage::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6px);
+  z-index: 1;
+}
+.thumb--glassmorphisme .t-stage::before { width: 90px; height: 90px; background: #ffd36e; top: -16px; left: -10px; }
+.thumb--glassmorphisme .t-stage::after { width: 80px; height: 80px; background: #46e8c8; bottom: -14px; right: 8px; }
+.thumb--glassmorphisme .t-card {
+  background: rgba(255, 255, 255, 0.18);
+  -webkit-backdrop-filter: blur(11px);
+  backdrop-filter: blur(11px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.18);
+}
+.thumb--glassmorphisme .t-line { opacity: 0.5; }
+.thumb--glassmorphisme .t-btn { background: rgba(255, 255, 255, 0.28); color: #fff; border: 1px solid rgba(255, 255, 255, 0.55); }
+
+/* 04 — Claymorphisme */
+.thumb--claymorphisme .t-stage { background: #e7defb; }
+.thumb--claymorphisme .t-card {
+  background: #fdeef1;
+  border-radius: 28px;
+  color: #c08793;
+  box-shadow: 16px 18px 32px rgba(160, 120, 190, 0.45), inset -6px -6px 12px rgba(190, 150, 210, 0.3), inset 6px 6px 12px rgba(255, 255, 255, 0.9);
+}
+.thumb--claymorphisme .t-bar i { background: #f3c9d2; }
+.thumb--claymorphisme .t-btn {
+  background: #ff9aa9;
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: inset -3px -3px 6px rgba(150, 60, 90, 0.25), inset 3px 3px 6px rgba(255, 255, 255, 0.6), 7px 7px 14px rgba(255, 120, 150, 0.5);
+}
+
+/* 05 — Minimalisme */
+.thumb--minimalisme .t-stage { background: #fbfbf9; }
+.thumb--minimalisme .t-card { background: transparent; color: #111; box-shadow: none; padding: 10px; }
+.thumb--minimalisme .t-bar { display: none; }
+.thumb--minimalisme .t-title { height: 13px; width: 46%; background: #111; border-radius: 0; opacity: 1; }
+.thumb--minimalisme .t-line { background: #111; opacity: 0.16; height: 5px; }
+.thumb--minimalisme .t-btn { background: #111; color: #fff; border-radius: 0; padding: 9px 18px; }
+
+/* 06 — Maximalisme */
+.thumb--maximalisme .t-stage { background: repeating-linear-gradient(45deg, #ffd000 0 16px, #ff2e63 16px 32px); }
+.thumb--maximalisme .t-card {
+  background: #00e6c3;
+  border: 3px solid #111;
+  border-radius: 6px;
+  color: #111;
+  transform: rotate(-3deg);
+  box-shadow: 7px 7px 0 #111;
+}
+.thumb--maximalisme .t-bar i { background: #111; }
+.thumb--maximalisme .t-title { background: #7c3aed; opacity: 1; height: 13px; }
+.thumb--maximalisme .t-line { background: #111; opacity: 0.85; }
+.thumb--maximalisme .t-btn { background: #ff2e63; color: #fff; border: 2px solid #111; border-radius: 4px; box-shadow: 3px 3px 0 #111; }
+.thumb--maximalisme .t-stage::after {
+  content: "WOW!";
+  position: absolute;
+  z-index: 3;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 20px;
+  color: #fff;
+  background: #111;
+  padding: 3px 9px;
+  transform: rotate(8deg);
+  border: 2px solid #ffd000;
+}
+
+/* 07 — Brutalisme */
+.thumb--brutalisme .t-stage { background: #ffffff; }
+.thumb--brutalisme .t-card { background: #fff; border: 2px solid #000; border-radius: 0; color: #000; box-shadow: 8px 8px 0 #000; }
+.thumb--brutalisme .t-bar i { background: #000; border-radius: 0; }
+.thumb--brutalisme .t-title { background: #1a1aff; border-radius: 0; opacity: 1; }
+.thumb--brutalisme .t-line { background: #000; opacity: 0.85; border-radius: 0; }
+.thumb--brutalisme .t-btn { background: #fff; color: #000; border: 2px solid #000; border-radius: 0; font-family: var(--mono); }
+
+/* 08 — Liquid Glass */
+.thumb--liquid-glass .t-stage { background: radial-gradient(120% 120% at 25% 15%, #4226a8 0%, #160e33 55%, #08060f 100%); }
+.thumb--liquid-glass .t-stage::before,
+.thumb--liquid-glass .t-stage::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(10px);
+  opacity: 0.85;
+}
+.thumb--liquid-glass .t-stage::before { width: 110px; height: 110px; background: conic-gradient(from 0deg, #5ac8fa, #b06bff, #ff6ec4, #5ac8fa); top: -20px; right: -16px; }
+.thumb--liquid-glass .t-stage::after { width: 90px; height: 90px; background: radial-gradient(#46e8c8, transparent 70%); bottom: -22px; left: -10px; }
+.thumb--liquid-glass .t-card {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 22px;
+  color: #eef4ff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -10px 20px rgba(120, 180, 255, 0.12), 0 12px 34px rgba(0, 0, 0, 0.5);
+}
+.thumb--liquid-glass .t-line { opacity: 0.5; }
+.thumb--liquid-glass .t-btn { background: rgba(255, 255, 255, 0.22); color: #fff; border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 999px; }
+
+/* 09 — Bento Grid */
+.thumb--bento-grid .t-stage { background: #ecedf0; padding: 16px; }
+.thumb--bento-grid .t-card {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  max-width: 230px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  grid-auto-rows: 30px;
+  gap: 8px;
+}
+.thumb--bento-grid .t-bar {
+  grid-column: 1; grid-row: 1 / span 2;
+  background: #111; border-radius: 13px; margin: 0;
+  padding: 10px; align-items: flex-start;
+}
+.thumb--bento-grid .t-bar i { background: rgba(255, 255, 255, 0.55); }
+.thumb--bento-grid .t-title { grid-column: 2; grid-row: 1; background: #0a84ff; border-radius: 13px; width: auto; height: auto; margin: 0; opacity: 1; }
+.thumb--bento-grid .t-line { grid-column: 2; grid-row: 2; background: #fff; opacity: 1; width: auto; height: auto; border-radius: 13px; margin: 0; }
+.thumb--bento-grid .t-line--s { grid-column: 1; grid-row: 3; background: #ffd60a; width: auto; }
+.thumb--bento-grid .t-btn {
+  grid-column: 2; grid-row: 3;
+  background: #111; color: #fff; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+
+/* 10 — Spatial UI */
+.thumb--spatial-ui .t-stage { background: radial-gradient(120% 130% at 50% 130%, #2b2458 0%, #0c0a1c 60%, #050409 100%); perspective: 620px; }
+.thumb--spatial-ui .t-stage::before {
+  content: "";
+  position: absolute;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.4), transparent 65%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 0;
+}
+.thumb--spatial-ui .t-card {
+  background: rgba(48, 44, 78, 0.42);
+  -webkit-backdrop-filter: blur(13px);
+  backdrop-filter: blur(13px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  color: #e9e7fb;
+  transform: rotateX(9deg) rotateY(-13deg);
+  box-shadow: 0 34px 54px rgba(0, 0, 0, 0.6), 0 0 44px rgba(167, 139, 250, 0.28);
+}
+.thumb--spatial-ui .t-line { opacity: 0.45; }
+.thumb--spatial-ui .t-btn { background: rgba(167, 139, 250, 0.4); color: #fff; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; }
+
+/* ── Colophon ───────────────────────────────────────────────── */
+.colophon {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 64px auto 0;
+  padding: 0 32px 56px;
+}
+.colophon-rule { height: 1px; background: var(--rule); }
+.colophon-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.colophon-row b { color: var(--ink); }
+
+@media (max-width: 640px) {
+  .masthead { padding: 40px 20px 16px; }
+  .catalog { padding: 0 20px; gap: 18px; }
+  .colophon { padding: 0 20px 40px; }
+  .masthead-top { flex-direction: column; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate-link { transition: none; }
+}

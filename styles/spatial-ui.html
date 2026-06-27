@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus · Spatial UI — Morphodex</title>
+  <link rel="stylesheet" href="../assets/landing-base.css" />
+  <link rel="stylesheet" href="../assets/hud.css" />
+  <style>
+    /* ====== PEAU : SPATIAL UI (visionOS) ======
+       L'interface flotte dans un espace 3D. Panneaux de verre
+       suspendus, profondeur, parallaxe, lumière ambiante. */
+    :root { --txt: #edecff; --dim: rgba(237,236,255,.72); --line: rgba(255,255,255,.18); --accent: #a78bfa; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; color: var(--txt); background: #05050d; }
+
+    .bg { background: radial-gradient(120% 70% at 50% 6%, #2a2456 0%, #14122e 34%, #07060f 68%); }
+    .bg-1 { width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(120,90,255,.5), transparent 62%); top: 4%; left: -12%; filter: blur(80px); }
+    .bg-2 { width: 54vw; height: 54vw; border-radius: 50%; background: radial-gradient(circle, rgba(90,170,255,.4), transparent 62%); top: 62%; right: -14%; filter: blur(90px); }
+    .bg-3 { left: 0; right: 0; bottom: 0; height: 40vh; width: auto; background: radial-gradient(60% 100% at 50% 100%, rgba(150,120,255,.22), transparent 72%); }
+
+    .scene { perspective: 1500px; }
+    .surface {
+      position: relative; transform-style: preserve-3d;
+      background: linear-gradient(160deg, rgba(120,128,200,.2), rgba(38,42,78,.34));
+      -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%);
+      border: 1px solid rgba(255,255,255,.2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 2px 4px rgba(0,0,0,.3), 0 40px 70px rgba(0,0,0,.55), 0 0 60px rgba(140,120,255,.1);
+      transition: box-shadow .3s ease;
+      will-change: transform;
+    }
+
+    .nav { padding: 12px 14px 12px 22px; border-radius: 999px; }
+    .brand { font-weight: 600; font-size: 19px; }
+    .brand-logo { width: 36px; height: 36px; border-radius: 50%; font-size: 18px; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.6), rgba(160,140,255,.3)); border: 1px solid rgba(255,255,255,.5); }
+    .nav-links a { color: var(--dim); font-size: 14px; font-weight: 500; padding: 10px 16px; border-radius: 999px; }
+    .nav-links a:hover { background: rgba(255,255,255,.14); }
+
+    .btn { font-weight: 600; font-size: 15px; color: #fff; padding: 13px 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: linear-gradient(160deg, rgba(255,255,255,.24), rgba(255,255,255,.08)); box-shadow: inset 0 1px 0 rgba(255,255,255,.5); transition: transform .15s; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(160deg, rgba(150,120,255,.7), rgba(90,150,255,.6)); border-color: rgba(255,255,255,.45); }
+    .nav-cta { padding: 10px 18px; }
+
+    .eyebrow { font-size: 13px; font-weight: 600; padding: 9px 17px; border-radius: 999px; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.26); color: #d9d4ff; }
+    .hero-title { font-weight: 600; text-shadow: 0 4px 44px rgba(150,130,255,.45); }
+    .accent { background: linear-gradient(110deg, #c9b8ff, #8ab4ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub, .section-sub { color: var(--dim); }
+    .hero-trust { color: var(--dim); font-size: 13.5px; }
+    .stars .ic { fill: #ffd479; stroke: #ffd479; font-size: 15px; }
+
+    .appwin { border-radius: 24px; }
+    .appbar { border-bottom: 1px solid var(--line); }
+    .appbar-dot { background: rgba(255,255,255,.3); }
+    .app-addr { font-size: 12px; color: var(--dim); }
+    .app-side { border-right: 1px solid var(--line); }
+    .app-side a { color: var(--dim); font-size: 12.5px; border-radius: 11px; }
+    .app-side a.on { background: rgba(255,255,255,.16); color: #fff; }
+    .app-note { background: rgba(255,255,255,.1); border: 1px solid var(--line); border-radius: 14px; }
+    .app-note[data-tag]::before { content: attr(data-tag); display: inline-block; font-size: 10px; padding: 2px 9px; border-radius: 999px; background: rgba(167,139,250,.32); color: #e3dbff; margin-bottom: 7px; }
+    .app-note-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .app-note-text { font-size: 11.5px; color: var(--dim); }
+    .app-graph .edge { stroke: rgba(190,180,255,.8); opacity: 1; } .app-graph .node { fill: #cabfff; }
+
+    .trustbar-label { color: var(--dim); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+    .trust-logos b { color: rgba(255,255,255,.55); font-size: 19px; font-weight: 600; }
+
+    .section-kicker { color: #c9b8ff; font-weight: 600; }
+    .section-title { font-weight: 600; }
+
+    .feature { border-radius: 24px; padding: 32px 28px; }
+    .feature-icon { width: 60px; height: 60px; border-radius: 18px; font-size: 26px; margin-bottom: 22px; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.36), rgba(150,130,255,.2)); border: 1px solid rgba(255,255,255,.35); }
+    .feature-title { font-weight: 600; margin-bottom: 11px; }
+    .feature-text { font-size: 15px; color: var(--dim); }
+
+    .spotlight { border-radius: 30px; padding: 44px; }
+    .spotlight-title { font-weight: 600; margin-bottom: 16px; }
+    .spotlight-text { font-size: 16px; color: var(--dim); margin-bottom: 22px; }
+    .checks li { font-size: 15px; } .checks .ic { color: #9be8d0; }
+    .spotlight-visual { border-radius: 20px; }
+    .spotlight-visual .edge { stroke: rgba(190,180,255,.5); }
+    .node-a { fill: rgba(150,130,255,.8); } .node-b { fill: rgba(170,139,250,.9); } .node-c { fill: rgba(126,232,200,.8); } .node-d { fill: rgba(255,150,210,.75); } .node-e { fill: rgba(138,180,255,.8); }
+
+    .step { border-radius: 22px; padding: 30px 26px; }
+    .step-num { font-size: 13px; font-weight: 700; letter-spacing: .1em; color: #c9b8ff; }
+    .step-icon { width: 50px; height: 50px; border-radius: 15px; font-size: 22px; margin: 18px 0 16px; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.3); }
+    .step-title { font-weight: 600; margin-bottom: 9px; }
+    .step-text { font-size: 14.5px; color: var(--dim); }
+
+    .stats { border-radius: 28px; padding: 46px; }
+    .stat-num { font-weight: 600; background: linear-gradient(120deg, #fff, #c9b8ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 13.5px; color: var(--dim); }
+
+    .quote { border-radius: 28px; padding: 50px; }
+    .quote-text { font-weight: 500; }
+    .quote-text .accent { background: linear-gradient(110deg, #c9b8ff, #8ab4ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .quote-avatar { background: linear-gradient(150deg, #8a7bff, #5a96ff); border: 1px solid rgba(255,255,255,.4); }
+    .quote-name { font-size: 15px; } .quote-role { font-size: 13px; color: var(--dim); }
+
+    .cta { border-radius: 34px; padding: 70px 30px; }
+    .cta-title { font-weight: 600; margin-bottom: 14px; text-shadow: 0 4px 40px rgba(150,130,255,.4); }
+    .cta-text { font-size: 18px; color: var(--dim); margin-bottom: 30px; }
+
+    .site-footer { border-top: 1px solid var(--line); padding: 56px 0 30px; margin-top: 56px; }
+    .foot-brand .brand { margin-bottom: 14px; }
+    .foot-tagline { color: var(--dim); font-size: 14px; max-width: 240px; }
+    .foot-col h6 { color: var(--dim); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+    .foot-col a { color: rgba(255,255,255,.82); font-size: 14.5px; margin-bottom: 11px; }
+    .foot-col a:hover { color: #fff; }
+    .foot-bottom { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 13px; color: var(--dim); }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body data-style="spatial-ui">
+  <script src="../assets/landing.js"></script>
+  <script src="../assets/styles-data.js"></script>
+  <script src="../assets/hud.js"></script>
+  <script>
+    /* Parallaxe spatiale : chaque panneau flotte à sa profondeur,
+       suivant doucement le curseur (sans tourner toute la page). */
+    (function () {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var sel = ".appwin, .feature, .spotlight, .step, .stats, .quote, .cta, .eyebrow";
+      var panels = [].slice.call(document.querySelectorAll(sel));
+      panels.forEach(function (p, i) { p.dataset.depth = 8 + (i % 5) * 5; });
+      var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+      window.addEventListener("pointermove", function (e) {
+        tx = e.clientX / window.innerWidth - 0.5;
+        ty = e.clientY / window.innerHeight - 0.5;
+        if (!raf) raf = requestAnimationFrame(loop);
+      });
+      function loop() {
+        raf = null;
+        cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+        for (var i = 0; i < panels.length; i++) {
+          var d = +panels[i].dataset.depth;
+          panels[i].style.transform =
+            "perspective(1200px) translate3d(" + (cx * d) + "px," + (cy * d * 0.7) + "px,0) rotateX(" + (-cy * 3) + "deg) rotateY(" + (cx * 4) + "deg)";
+        }
+        if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) raf = requestAnimationFrame(loop);
+      }
+    })();
+  </script>
+</body>
+</html>

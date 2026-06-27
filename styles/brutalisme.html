@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIMBUS // brutalisme — Morphodex</title>
+  <link rel="stylesheet" href="../assets/landing-base.css" />
+  <link rel="stylesheet" href="../assets/hud.css" />
+  <style>
+    /* ====== PEAU : BRUTALISME ======
+       Le HTML par défaut, sans excuse. Times/monospace, liens bleus
+       soulignés, bordures noires épaisses, contraste max, brut. */
+    body { font-family: "Times New Roman", Times, serif; background: #fff; color: #000; line-height: 1.4; }
+    .bg { display: none; }
+    .mono { font-family: "Courier New", monospace; }
+
+    .surface { background: #fff; border: 3px solid #000; border-radius: 0; box-shadow: 8px 8px 0 #000; }
+
+    .site-header { padding: 0; }
+    .nav { padding: 12px 16px; border: none; border-bottom: 3px solid #000; box-shadow: none; background: #fff; }
+    .brand { font-weight: bold; font-size: 28px; text-transform: uppercase; letter-spacing: -1px; }
+    .brand-logo { width: 36px; height: 36px; border-radius: 0; border: 3px solid #000; background: #1a1aff; color: #fff; font-size: 17px; }
+    .nav-links { gap: 4px; font-family: "Courier New", monospace; }
+    .nav-links a { color: #0000ee; font-size: 14px; padding: 6px 8px; text-decoration: underline; }
+    .nav-links a:hover { background: #000; color: #fff; }
+
+    .btn { font-family: "Courier New", monospace; font-weight: bold; font-size: 15px; padding: 12px 18px; border-radius: 0; border: 3px solid #000; background: #fff; color: #000; box-shadow: 4px 4px 0 #000; }
+    .btn:hover { background: #000; color: #fff; }
+    .btn-primary { background: #1a1aff; color: #fff; }
+    .btn-primary:hover { background: #000; }
+    .nav-cta { box-shadow: none; padding: 8px 12px; }
+
+    .eyebrow { font-family: "Courier New", monospace; font-size: 13px; background: #000; color: #fff; padding: 4px 10px; border-radius: 0; border: none; }
+    .hero { padding: 50px 0 40px; }
+    .hero-title { font-weight: bold; letter-spacing: -2px; font-size: clamp(46px, 9vw, 108px); line-height: .98; }
+    .accent { text-decoration: underline; text-decoration-thickness: 5px; }
+    .hero-sub { font-size: 22px; color: #000; }
+    .hero-sub .accent, .accent { background: none; }
+    .hero-trust { font-family: "Courier New", monospace; font-size: 14px; color: #000; }
+    .stars .ic { fill: #000; stroke: #000; font-size: 15px; }
+
+    .appwin { border-radius: 0; box-shadow: 10px 10px 0 #000; }
+    .appbar { border-bottom: 3px solid #000; }
+    .appbar-dot { border-radius: 0; width: 12px; height: 12px; background: #000; }
+    .app-addr { font-family: "Courier New", monospace; font-size: 12px; color: #000; }
+    .app-side { border-right: 3px solid #000; }
+    .app-side a { color: #000; font-family: "Courier New", monospace; font-size: 12px; border-radius: 0; }
+    .app-side a.on { background: #1a1aff; color: #fff; }
+    .app-side a.on .ic { color: #fff; }
+    .app-note { border: 2px solid #000; border-radius: 0; box-shadow: 4px 4px 0 #000; padding: 11px 12px; }
+    .app-note[data-tag]::before { content: "[" attr(data-tag) "]"; font-family: "Courier New", monospace; font-size: 11px; color: #0000ee; display: block; margin-bottom: 5px; }
+    .app-note-title { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
+    .app-note-text { font-family: "Courier New", monospace; font-size: 11px; color: #000; }
+    .app-graph .edge { stroke: #000; opacity: 1; stroke-width: 2; } .app-graph .node { fill: #000; }
+
+    .trustbar { border-top: 3px solid #000; border-bottom: 3px solid #000; padding: 18px 0; }
+    .trustbar-label { font-family: "Courier New", monospace; font-size: 13px; text-transform: uppercase; color: #000; }
+    .trust-logos { gap: 28px; }
+    .trust-logos b { font-family: "Courier New", monospace; font-size: 18px; text-transform: uppercase; color: #000; text-decoration: underline; }
+
+    .section { padding: 64px 0; }
+    .section-kicker { font-family: "Courier New", monospace; color: #000; text-transform: uppercase; }
+    .section-title { font-weight: bold; letter-spacing: -1px; }
+
+    .features { gap: 0; border: 3px solid #000; }
+    .feature { border: none; border-right: 3px solid #000; border-radius: 0; box-shadow: none; padding: 26px 22px; }
+    .feature:last-child { border-right: none; }
+    .feature-icon { width: 50px; height: 50px; border: 3px solid #000; border-radius: 0; font-size: 24px; color: #000; margin-bottom: 16px; }
+    .feature-title { font-weight: bold; font-size: 24px; text-decoration: underline; margin-bottom: 9px; }
+    .feature-text { font-size: 16px; color: #000; }
+
+    .spotlight { border-radius: 0; box-shadow: 10px 10px 0 #000; padding: 40px; }
+    .spotlight-title { font-weight: bold; letter-spacing: -1px; margin-bottom: 14px; }
+    .spotlight-text { font-size: 17px; margin-bottom: 20px; }
+    .checks li { font-size: 16px; } .checks .ic { color: #000; }
+    .spotlight-visual { border-radius: 0; border: 3px solid #000; }
+    .spotlight-visual .edge { stroke: #000; stroke-width: 2; }
+    .node { fill: #000; } .node-b { fill: #1a1aff; }
+
+    .steps { gap: 0; border: 3px solid #000; }
+    .step { border: none; border-right: 3px solid #000; border-radius: 0; box-shadow: none; padding: 26px 22px; }
+    .step:last-child { border-right: none; }
+    .step-num { font-family: "Courier New", monospace; font-size: 13px; color: #000; }
+    .step-icon { width: 48px; height: 48px; border: 3px solid #000; border-radius: 0; font-size: 22px; color: #000; margin: 16px 0; }
+    .step-title { font-weight: bold; font-size: 22px; text-decoration: underline; margin-bottom: 9px; }
+    .step-text { font-size: 15px; color: #000; }
+
+    .stats { border-radius: 0; box-shadow: none; padding: 0; gap: 0; border: 3px solid #000; }
+    .stat { padding: 24px 16px; border-right: 3px solid #000; }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-weight: bold; font-family: "Times New Roman", serif; }
+    .stat-label { font-family: "Courier New", monospace; font-size: 12px; text-transform: uppercase; color: #000; }
+
+    .quote { border-radius: 0; box-shadow: 8px 8px 0 #000; padding: 40px; max-width: 800px; }
+    .quote-text { font-weight: normal; font-style: italic; }
+    .quote-text .accent { text-decoration: underline; }
+    .quote-avatar { border-radius: 0; background: #1a1aff; border: 3px solid #000; }
+    .quote-name { font-weight: bold; font-size: 15px; } .quote-role { font-family: "Courier New", monospace; font-size: 12px; color: #000; }
+
+    .cta { border-radius: 0; box-shadow: 12px 12px 0 #000; padding: 50px 30px; }
+    .cta-title { font-weight: bold; letter-spacing: -1px; margin-bottom: 14px; }
+    .cta-text { font-family: "Courier New", monospace; font-size: 15px; margin-bottom: 26px; }
+
+    .site-footer { margin-top: 50px; border-top: 3px solid #000; padding: 30px 0; }
+    .foot-brand .brand { font-size: 22px; margin-bottom: 12px; }
+    .foot-tagline { font-family: "Courier New", monospace; font-size: 13px; color: #000; max-width: 240px; }
+    .foot-col h6 { font-family: "Courier New", monospace; font-size: 12px; text-transform: uppercase; color: #000; margin-bottom: 12px; text-decoration: underline; }
+    .foot-col a { color: #0000ee; font-size: 15px; margin-bottom: 8px; text-decoration: underline; }
+    .foot-bottom { font-family: "Courier New", monospace; font-size: 12px; text-transform: uppercase; color: #000; margin-top: 30px; border-top: 3px solid #000; padding-top: 18px; }
+  </style>
+</head>
+<body data-style="brutalisme">
+  <script src="../assets/landing.js"></script>
+  <script src="../assets/styles-data.js"></script>
+  <script src="../assets/hud.js"></script>
+</body>
+</html>

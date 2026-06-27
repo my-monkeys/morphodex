@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus · Minimalisme — Morphodex</title>
+  <link rel="stylesheet" href="../assets/landing-base.css" />
+  <link rel="stylesheet" href="../assets/hud.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ====== PEAU : MINIMALISME ======
+       Le contenu d'abord. Blanc, hairlines, typo soignée, un seul
+       accent. Zéro ornement — la hiérarchie fait tout. */
+    :root { --ink: #141414; --soft: #6b6b6b; --line: #e7e7e4; --accent: #e2483b; --paper: #fcfcfb; }
+    body { font-family: "Archivo", system-ui, sans-serif; color: var(--ink); background: var(--paper); }
+    .bg { display: none; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+
+    .surface { background: var(--paper); border: 1px solid var(--line); }
+
+    .nav { padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .surface.nav { border-left: none; border-right: none; border-top: none; }
+    .brand { font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
+    .brand-logo { width: 30px; height: 30px; border-radius: 0; background: var(--ink); color: var(--paper); font-size: 15px; }
+    .nav-links { gap: 30px; }
+    .nav-links a { color: var(--ink); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .btn { font-weight: 500; font-size: 14px; padding: 13px 24px; border-radius: 0; background: var(--ink); color: var(--paper); }
+    .btn:hover { background: var(--accent); }
+    .btn-primary { background: var(--ink); }
+    .btn:not(.btn-primary):not(.nav-cta) { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+    .btn:not(.btn-primary):not(.nav-cta):hover { background: var(--ink); color: var(--paper); }
+    .nav-cta { padding: 11px 20px; }
+
+    .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); padding: 0; border: none; }
+    .hero { padding: 110px 0 90px; }
+    .hero-title { font-weight: 300; letter-spacing: -.04em; margin: 30px 0; }
+    .accent { color: var(--accent); }
+    .hero-sub { color: var(--soft); font-size: 21px; }
+    .hero-actions { margin-top: 40px; }
+    .hero-trust { color: var(--soft); font-size: 13px; margin-top: 26px; }
+    .stars .ic { fill: var(--ink); stroke: var(--ink); font-size: 14px; }
+
+    .appwin { border-radius: 0; }
+    .appbar { border-bottom: 1px solid var(--line); }
+    .appbar-dot { background: var(--line); }
+    .app-addr { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--soft); }
+    .app-side { border-right: 1px solid var(--line); }
+    .app-side a { color: var(--soft); font-size: 12.5px; border-radius: 0; }
+    .app-side a.on { color: var(--ink); background: #f2f2ef; }
+    .app-side a .ic { color: var(--ink); }
+    .app-note { border: 1px solid var(--line); border-radius: 0; padding: 12px 13px; }
+    .app-note[data-tag]::before { content: attr(data-tag); font-family: "JetBrains Mono", monospace; display: inline-block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .app-note-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .app-note-text { font-size: 11.5px; color: var(--soft); }
+    .app-graph .edge { stroke: #cfcfcf; opacity: 1; } .app-graph .node { fill: var(--ink); }
+
+    .trustbar { padding: 30px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .trustbar-label { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+    .trust-logos { gap: 44px; }
+    .trust-logos b { color: var(--ink); font-size: 17px; font-weight: 600; opacity: .55; }
+
+    .section { padding: 100px 0; }
+    .section-kicker { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .1em; color: var(--accent); }
+    .section-title { font-weight: 400; }
+
+    .features { gap: 0; border: 1px solid var(--line); }
+    .feature { border: none; border-right: 1px solid var(--line); border-radius: 0; padding: 44px 36px 52px; }
+    .feature:last-child { border-right: none; }
+    .feature-icon { width: auto; height: auto; justify-content: flex-start; font-size: 26px; color: var(--accent); margin-bottom: 28px; }
+    .feature-title { font-weight: 500; margin-bottom: 13px; }
+    .feature-text { font-size: 15px; color: var(--soft); line-height: 1.6; }
+
+    .spotlight { border: 1px solid var(--line); border-radius: 0; padding: 50px; }
+    .spotlight-title { font-weight: 400; margin-bottom: 16px; }
+    .spotlight-text { color: var(--soft); margin-bottom: 24px; font-size: 16px; }
+    .checks li { font-size: 15px; color: var(--ink); } .checks .ic { color: var(--accent); }
+    .spotlight-visual { border: 1px solid var(--line); border-radius: 0; }
+    .spotlight-visual .edge { stroke: #d6d6d6; }
+    .node { fill: var(--ink); }
+    .node-b { fill: var(--accent); }
+
+    .steps { gap: 0; border: 1px solid var(--line); }
+    .step { border: none; border-right: 1px solid var(--line); border-radius: 0; padding: 44px 36px; }
+    .step:last-child { border-right: none; }
+    .step-num { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .08em; color: var(--accent); }
+    .step-icon { width: auto; height: auto; justify-content: flex-start; font-size: 24px; color: var(--ink); margin: 22px 0 18px; }
+    .step-title { font-weight: 500; margin-bottom: 11px; }
+    .step-text { font-size: 14.5px; color: var(--soft); line-height: 1.6; }
+
+    .stats { border: none; border-top: 1px solid var(--line); border-radius: 0; padding: 70px 0 0; gap: 40px; }
+    .stat-num { font-weight: 300; letter-spacing: -.03em; }
+    .stat-label { font-size: 14px; color: var(--soft); margin-top: 12px; display: block; }
+
+    .quote { border: none; border-radius: 0; padding: 30px 0; max-width: 760px; }
+    .quote-text { font-weight: 400; letter-spacing: -.01em; }
+    .quote-text .accent { color: var(--accent); }
+    .quote-avatar { border-radius: 0; background: var(--ink); }
+    .quote-name { font-size: 15px; font-weight: 600; } .quote-role { font-size: 13px; color: var(--soft); }
+
+    .cta { background: var(--ink); color: var(--paper); border: none; border-radius: 0; padding: 110px 30px; }
+    .cta-title { font-weight: 400; }
+    .cta-text { font-size: 18px; color: #b8b8b8; margin: 18px 0 36px; }
+    .cta .btn-primary { background: var(--paper); color: var(--ink); }
+    .cta .btn-primary:hover { background: var(--accent); color: var(--paper); }
+    .cta .btn:not(.btn-primary) { color: var(--paper); border-color: rgba(255,255,255,.4); }
+    .cta .btn:not(.btn-primary):hover { background: var(--paper); color: var(--ink); }
+
+    .site-footer { margin-top: 0; border-top: 1px solid var(--line); padding: 56px 0 30px; }
+    .foot-brand .brand { margin-bottom: 14px; }
+    .foot-tagline { color: var(--soft); font-size: 14px; max-width: 240px; }
+    .foot-col h6 { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); margin-bottom: 16px; }
+    .foot-col a { color: var(--ink); font-size: 14.5px; margin-bottom: 11px; }
+    .foot-col a:hover { color: var(--accent); }
+    .foot-bottom { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .04em; color: var(--soft); margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body data-style="minimalisme">
+  <script src="../assets/landing.js"></script>
+  <script src="../assets/styles-data.js"></script>
+  <script src="../assets/hud.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus · Néomorphisme — Morphodex</title>
+  <link rel="stylesheet" href="../assets/landing-base.css" />
+  <link rel="stylesheet" href="../assets/hud.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ====== PEAU : NÉOMORPHISME (Soft UI) ======
+       Tout est de la couleur du fond. Le relief vient d'une double
+       ombre opposée (claire / sombre). Doux, monochrome, tactile. */
+    :root { --bg: #e4e9f0; --light: #ffffff; --dark: #b6bfcd; --txt: #5b6575; --strong: #3a4252; --accent: #6d5dfc; }
+    body { font-family: "Poppins", system-ui, sans-serif; background: var(--bg); color: var(--txt); }
+    .bg { display: none; }
+    .raised { box-shadow: -8px -8px 17px var(--light), 8px 8px 17px var(--dark); }
+    .inset { box-shadow: inset -5px -5px 11px var(--light), inset 5px 5px 11px var(--dark); }
+
+    .surface { background: var(--bg); border-radius: 24px; box-shadow: -8px -8px 17px var(--light), 8px 8px 17px var(--dark); }
+
+    .nav { padding: 13px 14px 13px 22px; border-radius: 999px; }
+    .brand { font-weight: 700; font-size: 19px; color: var(--strong); }
+    .brand-logo { width: 40px; height: 40px; border-radius: 50%; font-size: 18px; color: var(--accent); background: var(--bg); box-shadow: inset -3px -3px 7px var(--light), inset 3px 3px 7px var(--dark); }
+    .nav-links a { color: var(--txt); font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: 999px; }
+    .nav-links a:hover { box-shadow: inset -3px -3px 7px var(--light), inset 3px 3px 7px var(--dark); }
+
+    .btn { font-weight: 600; font-size: 15px; color: var(--accent); background: var(--bg); padding: 14px 24px; border-radius: 16px; box-shadow: -6px -6px 13px var(--light), 6px 6px 13px var(--dark); transition: box-shadow .15s; }
+    .btn:hover { box-shadow: -4px -4px 9px var(--light), 4px 4px 9px var(--dark); }
+    .btn:active { box-shadow: inset -4px -4px 9px var(--light), inset 4px 4px 9px var(--dark); }
+    .btn-primary { color: #fff; background: linear-gradient(145deg, #7d6efd, #5a48f0); box-shadow: -6px -6px 13px var(--light), 6px 6px 13px var(--dark); }
+    .btn-primary:active { box-shadow: inset 2px 2px 6px rgba(40,20,120,.5); }
+    .nav-cta { padding: 11px 20px; }
+
+    .eyebrow { font-size: 12px; font-weight: 600; color: var(--accent); padding: 10px 18px; border-radius: 999px; box-shadow: inset -3px -3px 7px var(--light), inset 3px 3px 7px var(--dark); }
+    .hero-title { font-weight: 700; color: var(--strong); }
+    .accent { color: var(--accent); }
+    .hero-sub, .section-sub { color: var(--txt); }
+    .hero-trust { color: var(--txt); font-size: 14px; }
+    .stars .ic { fill: #f6b73c; stroke: #f6b73c; }
+
+    .appwin { border-radius: 26px; }
+    .appbar { border-bottom: none; padding-bottom: 8px; }
+    .appbar-dot { background: var(--bg); box-shadow: inset 1px 1px 2px var(--dark), inset -1px -1px 2px var(--light); }
+    .app-addr { font-size: 12px; color: var(--txt); }
+    .app-side a { color: var(--txt); font-size: 12.5px; border-radius: 12px; }
+    .app-side a.on { color: var(--accent); box-shadow: inset -3px -3px 7px var(--light), inset 3px 3px 7px var(--dark); }
+    .app-note { background: var(--bg); border-radius: 14px; box-shadow: -5px -5px 11px var(--light), 5px 5px 11px var(--dark); }
+    .app-note[data-tag]::before { content: attr(data-tag); display: inline-block; font-size: 10px; padding: 2px 9px; border-radius: 999px; color: var(--accent); box-shadow: inset -2px -2px 4px var(--light), inset 2px 2px 4px var(--dark); margin-bottom: 7px; }
+    .app-note-title { font-size: 13px; font-weight: 600; color: var(--strong); margin-bottom: 3px; }
+    .app-note-text { font-size: 11.5px; color: var(--txt); }
+    .app-graph .edge { stroke: #b3bccb; opacity: 1; } .app-graph .node { fill: var(--accent); }
+
+    .trustbar-label { color: var(--txt); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .trust-logos b { color: #9aa3b3; font-size: 19px; font-weight: 700; }
+
+    .section-kicker { color: var(--accent); font-weight: 600; }
+    .section-title { font-weight: 700; color: var(--strong); }
+
+    .feature { border-radius: 24px; padding: 30px; }
+    .feature-icon { width: 58px; height: 58px; border-radius: 18px; font-size: 24px; color: var(--accent); margin-bottom: 20px; box-shadow: inset -4px -4px 9px var(--light), inset 4px 4px 9px var(--dark); }
+    .feature-title { font-weight: 600; color: var(--strong); margin-bottom: 9px; }
+    .feature-text { font-size: 14.5px; color: var(--txt); }
+
+    .spotlight { border-radius: 28px; padding: 42px; }
+    .spotlight-title { font-weight: 700; color: var(--strong); margin-bottom: 14px; }
+    .spotlight-text { color: var(--txt); margin-bottom: 20px; font-size: 16px; }
+    .checks li { color: var(--txt); font-size: 15px; } .checks .ic { color: var(--accent); }
+    .spotlight-visual { border-radius: 20px; box-shadow: inset -6px -6px 13px var(--light), inset 6px 6px 13px var(--dark); }
+    .spotlight-visual .edge { stroke: #b3bccb; }
+    .node-a { fill: #8b7efd; } .node-b { fill: #6d5dfc; } .node-c { fill: #9c93e8; } .node-d { fill: #b3a8f0; } .node-e { fill: #7d6efd; }
+
+    .step { border-radius: 22px; padding: 30px 26px; }
+    .step-num { font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--accent); }
+    .step-icon { width: 50px; height: 50px; border-radius: 15px; font-size: 22px; color: var(--accent); margin: 16px 0 14px; box-shadow: inset -4px -4px 9px var(--light), inset 4px 4px 9px var(--dark); }
+    .step-title { font-weight: 600; color: var(--strong); margin-bottom: 9px; }
+    .step-text { font-size: 14.5px; color: var(--txt); }
+
+    .stats { border-radius: 26px; padding: 44px; }
+    .stat-num { font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 13.5px; color: var(--txt); }
+
+    .quote { border-radius: 28px; padding: 48px; }
+    .quote-text { font-weight: 500; color: var(--strong); }
+    .quote-text .accent { color: var(--accent); }
+    .quote-avatar { background: linear-gradient(145deg, #8b7efd, #5a48f0); box-shadow: -4px -4px 8px var(--light), 4px 4px 8px var(--dark); }
+    .quote-name { font-size: 15px; color: var(--strong); } .quote-role { font-size: 13px; color: var(--txt); }
+
+    .cta { border-radius: 32px; padding: 60px 30px; }
+    .cta-title { font-weight: 700; color: var(--strong); margin-bottom: 14px; }
+    .cta-text { font-size: 18px; color: var(--txt); margin-bottom: 28px; }
+
+    .site-footer { margin-top: 50px; }
+    .foot-brand .brand { color: var(--strong); margin-bottom: 14px; }
+    .foot-tagline { color: var(--txt); font-size: 14px; max-width: 240px; }
+    .foot-col h6 { color: var(--txt); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+    .foot-col a { color: var(--txt); font-size: 14.5px; margin-bottom: 10px; }
+    .foot-col a:hover { color: var(--accent); }
+    .foot-bottom { color: #9aa3b3; font-size: 13px; margin-top: 36px; }
+  </style>
+</head>
+<body data-style="neomorphisme">
+  <script src="../assets/landing.js"></script>
+  <script src="../assets/styles-data.js"></script>
+  <script src="../assets/hud.js"></script>
+</body>
+</html>

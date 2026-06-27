@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus · Maximalisme — Morphodex</title>
+  <link rel="stylesheet" href="../assets/landing-base.css" />
+  <link rel="stylesheet" href="../assets/hud.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Pacifico&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ====== PEAU : MAXIMALISME ======
+       Trop c'est exactement assez. Couleurs qui clashent, polices
+       qui s'entrechoquent, bordures épaisses, stickers, densité. */
+    :root { --pink: #ff2e88; --blue: #2d6bff; --lime: #c6ff00; --yellow: #ffe600; --violet: #8b2fff; --mint: #00e6c3; }
+    body { font-family: "Space Mono", monospace; color: #111; background: #ffe600; background-image: radial-gradient(circle, rgba(0,0,0,.16) 2px, transparent 2.5px); background-size: 22px 22px; }
+    .bg { display: none; }
+
+    .surface { background: #fff; border: 4px solid #111; box-shadow: 8px 8px 0 #111; }
+
+    .nav { padding: 12px 16px; border-radius: 0; box-shadow: 7px 7px 0 var(--pink); }
+    .brand { font-family: "Anton"; font-size: 30px; letter-spacing: .02em; text-transform: uppercase; color: var(--violet); -webkit-text-stroke: 1.5px #111; }
+    .brand-logo { width: 38px; height: 38px; border-radius: 0; background: var(--lime); border: 3px solid #111; color: #111; font-size: 18px; }
+    .nav-links { gap: 8px; flex-wrap: wrap; }
+    .nav-links a { font-weight: 700; font-size: 14px; padding: 7px 12px; border: 3px solid #111; background: var(--mint); }
+    .nav-links a:nth-of-type(2) { background: var(--yellow); transform: rotate(-2deg); }
+    .nav-links a:nth-of-type(3) { background: var(--blue); color: #fff; transform: rotate(1.5deg); }
+    .nav-links a:hover { background: #111; color: var(--lime); }
+
+    .btn { font-family: "Archivo Black"; font-size: 15px; color: #111; padding: 14px 24px; border-radius: 0; background: var(--lime); border: 4px solid #111; box-shadow: 6px 6px 0 #111; text-transform: uppercase; transition: transform .12s, box-shadow .12s; }
+    .btn:hover { transform: translate(-2px,-2px); box-shadow: 9px 9px 0 #111; }
+    .btn:active { transform: translate(3px,3px); box-shadow: 2px 2px 0 #111; }
+    .btn-primary { background: var(--pink); color: #fff; }
+    .nav-cta { padding: 9px 16px; font-size: 13px; box-shadow: 4px 4px 0 #111; }
+
+    .eyebrow { font-family: "Archivo Black"; font-size: 14px; text-transform: uppercase; padding: 9px 16px; border: 3px solid #111; border-radius: 0; background: var(--mint); transform: rotate(-1.5deg); }
+    .hero { position: relative; }
+    .hero-title { font-family: "Anton"; font-weight: 400; text-transform: uppercase; font-size: clamp(56px, 9vw, 120px); line-height: .88; letter-spacing: 0; color: var(--blue); -webkit-text-stroke: 3px #111; }
+    .accent { font-family: "Pacifico"; color: var(--violet); -webkit-text-stroke: 0; text-transform: none; font-size: .68em; display: inline-block; transform: rotate(-3deg); }
+    .hero-sub { font-weight: 700; background: #fff; border: 4px solid #111; padding: 16px 20px; box-shadow: 6px 6px 0 var(--mint); transform: rotate(-1deg); color: #111; font-size: 17px; }
+    .hero-trust { font-weight: 700; color: #111; font-size: 14px; }
+    .stars .ic { fill: var(--pink); stroke: #111; }
+    .hero-visual { position: relative; }
+    .hero-visual::after { content: "★ NEW v3"; position: absolute; top: -14px; right: -8px; z-index: 5; font-family: "Archivo Black"; font-size: 15px; background: var(--yellow); border: 3px solid #111; padding: 8px 12px; transform: rotate(9deg); }
+
+    .appwin { border-radius: 0; transform: rotate(-1deg); }
+    .appbar { background: var(--violet); border-bottom: 4px solid #111; }
+    .appbar-dot { background: var(--lime); border: 1.5px solid #111; }
+    .app-addr { font-weight: 700; font-size: 12px; color: #fff; }
+    .app-side { border-right: 4px solid #111; background: var(--yellow); }
+    .app-side a { font-weight: 700; font-size: 12.5px; color: #111; }
+    .app-side a.on { background: #111; color: var(--lime); }
+    .app-note { background: #fff; border: 3px solid #111; box-shadow: 4px 4px 0 var(--pink); }
+    .app-note[data-tag]::before { content: attr(data-tag); display: inline-block; font-family: "Archivo Black"; font-size: 10px; text-transform: uppercase; padding: 2px 8px; background: var(--blue); color: #fff; border: 2px solid #111; margin-bottom: 6px; }
+    .app-note-title { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+    .app-note-text { font-size: 11.5px; color: #444; }
+    .app-graph .edge { stroke: #111; opacity: 1; stroke-width: 2.5; } .app-graph .node { fill: var(--pink); stroke: #111; stroke-width: 2; }
+
+    .trustbar-label { font-family: "Archivo Black"; font-size: 13px; text-transform: uppercase; color: #111; }
+    .trust-logos b { font-family: "Anton"; font-size: 24px; text-transform: uppercase; color: #111; -webkit-text-stroke: 1px #111; }
+    .trust-logos b:nth-child(odd) { color: var(--pink); }
+    .trust-logos b:nth-child(even) { color: var(--blue); }
+
+    .section-kicker { font-family: "Archivo Black"; text-transform: uppercase; color: #fff; background: var(--pink); border: 3px solid #111; padding: 5px 12px; }
+    .section-title { font-family: "Anton"; font-weight: 400; text-transform: uppercase; color: #111; -webkit-text-stroke: 1px #111; font-size: clamp(38px, 6vw, 70px); }
+
+    .feature { border-radius: 0; padding: 28px; }
+    .feature:nth-child(1) { background: var(--mint); box-shadow: 9px 9px 0 #111; transform: rotate(-1.5deg); }
+    .feature:nth-child(2) { background: var(--pink); color: #fff; box-shadow: 9px 9px 0 var(--blue); transform: rotate(1deg); }
+    .feature:nth-child(3) { background: var(--blue); color: #fff; box-shadow: 9px 9px 0 var(--lime); transform: rotate(-1deg); }
+    .feature-icon { width: 60px; height: 60px; font-size: 30px; color: var(--lime); margin-bottom: 14px; background: #111; border: 3px solid #fff; }
+    .feature-title { font-family: "Archivo Black"; font-size: 23px; text-transform: uppercase; margin-bottom: 10px; }
+    .feature-text { font-weight: 700; font-size: 14.5px; }
+
+    .spotlight { border-radius: 0; padding: 40px; background: var(--lime); box-shadow: 10px 10px 0 #111; }
+    .spotlight-title { font-family: "Anton"; font-weight: 400; text-transform: uppercase; -webkit-text-stroke: 1px #111; color: var(--violet); margin-bottom: 14px; font-size: clamp(30px,4vw,44px); }
+    .spotlight-text { font-weight: 700; margin-bottom: 20px; font-size: 16px; color: #111; }
+    .checks li { font-weight: 700; font-size: 15px; color: #111; } .checks .ic { color: #111; }
+    .spotlight-visual { border-radius: 0; background: #fff; border: 4px solid #111; }
+    .spotlight-visual .edge { stroke: #111; stroke-width: 2.5; }
+    .node { stroke: #111; stroke-width: 2.5; }
+    .node-a { fill: var(--pink); } .node-b { fill: var(--violet); } .node-c { fill: var(--mint); } .node-d { fill: var(--yellow); } .node-e { fill: var(--blue); }
+
+    .step { border-radius: 0; padding: 28px 24px; }
+    .step:nth-child(1) { background: var(--yellow); box-shadow: 8px 8px 0 #111; }
+    .step:nth-child(2) { background: var(--mint); box-shadow: 8px 8px 0 var(--pink); transform: rotate(-1deg); }
+    .step:nth-child(3) { background: var(--pink); color: #fff; box-shadow: 8px 8px 0 #111; }
+    .step-num { font-family: "Archivo Black"; font-size: 13px; letter-spacing: .04em; }
+    .step-icon { width: 52px; height: 52px; font-size: 24px; color: #fff; margin: 14px 0; background: #111; border: 3px solid #fff; }
+    .step-title { font-family: "Archivo Black"; font-size: 21px; text-transform: uppercase; margin-bottom: 9px; }
+    .step-text { font-weight: 700; font-size: 14px; }
+
+    .stats { border-radius: 0; padding: 0; gap: 0; border: 4px solid #111; box-shadow: 10px 10px 0 #111; overflow: hidden; }
+    .stat { padding: 30px 16px; }
+    .stat:nth-child(1) { background: var(--yellow); }
+    .stat:nth-child(2) { background: var(--violet); color: #fff; }
+    .stat:nth-child(3) { background: var(--lime); }
+    .stat:nth-child(4) { background: var(--pink); color: #fff; }
+    .stat-num { font-family: "Anton"; font-weight: 400; }
+    .stat-label { font-weight: 700; font-size: 13px; text-transform: uppercase; }
+
+    .quote { border-radius: 0; padding: 44px; background: #fff; border: 4px solid #111; box-shadow: 11px 11px 0 var(--violet); }
+    .quote-text { font-weight: 700; color: #111; }
+    .quote-text .accent { font-family: "Pacifico"; color: var(--pink); font-size: 1em; transform: none; }
+    .quote-avatar { border-radius: 0; background: var(--mint); border: 3px solid #111; }
+    .quote-name { font-family: "Archivo Black"; font-size: 15px; } .quote-role { font-size: 13px; color: #444; }
+
+    .cta { border-radius: 0; padding: 56px 24px; background: var(--pink); border: 4px solid #111; box-shadow: 12px 12px 0 #111; position: relative; }
+    .cta::after { content: "100% GRATUIT"; position: absolute; bottom: -16px; left: 24px; font-family: "Archivo Black"; font-size: 14px; background: var(--lime); border: 3px solid #111; padding: 7px 12px; transform: rotate(-3deg); }
+    .cta-title { font-family: "Anton"; font-weight: 400; text-transform: uppercase; color: #fff; -webkit-text-stroke: 2px #111; margin-bottom: 16px; }
+    .cta-text { font-weight: 700; color: #fff; margin-bottom: 26px; font-size: 17px; }
+
+    .site-footer { margin-top: 56px; }
+    .foot-grid { background: #111; padding: 36px; }
+    .foot-brand .brand { color: var(--lime); margin-bottom: 12px; }
+    .foot-tagline { color: #fff; font-weight: 700; font-size: 14px; max-width: 240px; }
+    .foot-col h6 { font-family: "Archivo Black"; color: var(--yellow); font-size: 12px; text-transform: uppercase; margin-bottom: 14px; }
+    .foot-col a { color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+    .foot-col a:hover { color: var(--mint); }
+    .foot-bottom { font-weight: 700; font-size: 13px; color: #111; background: var(--lime); border: 4px solid #111; padding: 16px; margin-top: 0; }
+  </style>
+</head>
+<body data-style="maximalisme">
+  <script src="../assets/landing.js"></script>
+  <script src="../assets/styles-data.js"></script>
+  <script src="../assets/hud.js"></script>
+</body>
+</html>

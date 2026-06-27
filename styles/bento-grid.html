@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus · Bento Grid — Morphodex</title>
+  <link rel="stylesheet" href="../assets/landing-base.css" />
+  <link rel="stylesheet" href="../assets/hud.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ====== PEAU : BENTO GRID ======
+       Boîte à compartiments : tuiles arrondies de tailles variées,
+       une idée par case. Dense, équilibré, scannable. */
+    :root { --ink: #15161a; --soft: #6b7080; --card: #fff; --bg: #eceef2; --blue: #0a84ff; --violet: #7c5cff; --green: #18c08f; --amber: #ffb020; --r: 26px; }
+    body { font-family: "Manrope", system-ui, sans-serif; background: var(--bg); color: var(--ink); }
+    .bg { display: none; }
+
+    .surface { background: var(--card); border-radius: var(--r); border: 1px solid rgba(0,0,0,.05); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 10px 26px rgba(20,22,30,.05); }
+
+    .nav { padding: 12px 12px 12px 20px; border-radius: 999px; }
+    .brand { font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
+    .brand-logo { width: 36px; height: 36px; border-radius: 11px; background: var(--ink); color: #fff; font-size: 18px; }
+    .nav-links a { color: var(--ink); font-size: 14px; font-weight: 600; padding: 9px 15px; border-radius: 999px; }
+    .nav-links a:hover { background: rgba(0,0,0,.06); }
+
+    .btn { font-weight: 700; font-size: 14px; padding: 12px 22px; border-radius: 999px; background: var(--ink); color: #fff; }
+    .btn:hover { opacity: .88; }
+    .btn-primary { background: var(--blue); }
+    .btn:not(.btn-primary):not(.nav-cta) { background: #fff; color: var(--ink); border: 1px solid rgba(0,0,0,.1); }
+    .nav-cta { padding: 11px 20px; }
+
+    .hero { align-items: stretch; }
+    .hero-copy { background: linear-gradient(150deg, #1b1c22, #2c2f3d); color: #fff; border-radius: 30px; padding: 44px; display: flex; flex-direction: column; justify-content: center; }
+    .eyebrow { align-self: flex-start; font-size: 13px; font-weight: 700; padding: 8px 15px; border-radius: 999px; background: rgba(255,255,255,.14); color: #fff; }
+    .hero-title { font-weight: 800; font-size: clamp(34px, 4.2vw, 52px); margin-bottom: 16px; }
+    .accent { color: #8ab4ff; }
+    .hero-sub { color: rgba(255,255,255,.8); font-size: 17px; margin-bottom: 26px; }
+    .hero-trust { color: rgba(255,255,255,.7); font-size: 13px; margin-top: 22px; }
+    .stars .ic { fill: var(--amber); stroke: var(--amber); }
+    .hero-visual { display: flex; }
+
+    .appwin { border-radius: 30px; width: 100%; }
+    .appbar { border-bottom: 1px solid rgba(0,0,0,.07); }
+    .appbar-dot { background: rgba(0,0,0,.16); }
+    .app-addr { font-size: 12px; color: var(--soft); }
+    .app-side { border-right: 1px solid rgba(0,0,0,.07); }
+    .app-side a { color: var(--soft); font-size: 12.5px; border-radius: 10px; }
+    .app-side a.on { background: #eef1ff; color: var(--blue); }
+    .app-note { background: #f6f7f9; border-radius: 14px; }
+    .app-note[data-tag]::before { content: attr(data-tag); display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: #e4ebff; color: var(--blue); margin-bottom: 7px; }
+    .app-note-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+    .app-note-text { font-size: 11.5px; color: var(--soft); }
+    .app-graph .edge { stroke: #c7ccd6; opacity: 1; } .app-graph .node { fill: var(--blue); }
+
+    .trustbar-label { color: var(--soft); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .trust-logos b { color: #9aa0ad; font-size: 19px; font-weight: 700; }
+
+    .section { padding: 56px 0; }
+    .section-head { margin-bottom: 38px; }
+    .section-kicker { color: var(--blue); font-weight: 700; }
+    .section-title { font-weight: 800; }
+
+    .feature { border-radius: var(--r); padding: 30px; }
+    .feature:nth-child(1) { background: var(--blue); color: #fff; border-color: transparent; }
+    .feature:nth-child(2) { background: var(--violet); color: #fff; border-color: transparent; }
+    .feature:nth-child(3) { background: var(--green); color: #fff; border-color: transparent; }
+    .feature-icon { width: 54px; height: 54px; border-radius: 15px; font-size: 25px; color: #fff; margin-bottom: 20px; background: rgba(255,255,255,.18); }
+    .feature-title { font-weight: 700; margin-bottom: 9px; }
+    .feature-text { font-size: 14.5px; color: rgba(255,255,255,.88); }
+
+    .spotlight { border-radius: 30px; padding: 42px; }
+    .spotlight-title { font-weight: 800; margin-bottom: 14px; }
+    .spotlight-text { color: var(--soft); margin-bottom: 20px; font-size: 16px; }
+    .checks li { font-size: 15px; color: var(--ink); } .checks .ic { color: var(--green); }
+    .spotlight-visual { border-radius: 20px; background: #f5f6f8; border: 1px solid rgba(0,0,0,.05); }
+    .spotlight-visual .edge { stroke: #c7ccd6; }
+    .node-a { fill: var(--blue); } .node-b { fill: var(--violet); } .node-c { fill: var(--green); } .node-d { fill: #ff6b8a; } .node-e { fill: var(--amber); }
+
+    .step { border-radius: var(--r); padding: 30px 26px; }
+    .step:nth-child(2) { background: var(--ink); color: #fff; border-color: transparent; }
+    .step:nth-child(2) .step-text { color: rgba(255,255,255,.72); }
+    .step-num { font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--blue); }
+    .step:nth-child(2) .step-num { color: #8ab4ff; }
+    .step-icon { width: 50px; height: 50px; border-radius: 15px; font-size: 22px; margin: 16px 0 14px; background: #eef1ff; color: var(--blue); }
+    .step:nth-child(2) .step-icon { background: rgba(255,255,255,.14); color: #fff; }
+    .step-title { font-weight: 700; margin-bottom: 9px; }
+    .step-text { font-size: 14.5px; color: var(--soft); }
+
+    .stats { border-radius: 30px; padding: 0; gap: 0; overflow: hidden; }
+    .stat { padding: 36px 18px; }
+    .stat:nth-child(1) { background: var(--ink); color: #fff; }
+    .stat:nth-child(2) { background: var(--violet); color: #fff; }
+    .stat:nth-child(3) { background: var(--blue); color: #fff; }
+    .stat:nth-child(4) { background: var(--amber); color: #3a2a00; }
+    .stat-num { font-weight: 800; }
+    .stat-label { font-size: 13px; opacity: .85; }
+
+    .quote { border-radius: 30px; padding: 48px; }
+    .quote-text { font-weight: 600; }
+    .quote-text .accent { color: var(--violet); }
+    .quote-avatar { background: linear-gradient(150deg, var(--blue), var(--violet)); }
+    .quote-name { font-size: 15px; font-weight: 700; } .quote-role { font-size: 13px; color: var(--soft); }
+
+    .cta { border-radius: 34px; padding: 64px 30px; background: linear-gradient(120deg, var(--violet), var(--blue)); color: #fff; border: none; }
+    .cta-title { font-weight: 800; margin-bottom: 12px; }
+    .cta-text { font-size: 18px; color: rgba(255,255,255,.85); margin-bottom: 28px; }
+    .cta .btn-primary { background: #fff; color: var(--ink); }
+    .cta .btn:not(.btn-primary) { background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.4); }
+
+    .site-footer { margin-top: 48px; }
+    .foot-brand .brand { margin-bottom: 14px; }
+    .foot-tagline { color: var(--soft); font-size: 14px; max-width: 240px; }
+    .foot-col h6 { color: var(--soft); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+    .foot-col a { color: var(--ink); font-size: 14.5px; margin-bottom: 10px; }
+    .foot-col a:hover { color: var(--blue); }
+    .foot-bottom { color: var(--soft); font-size: 13px; margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(0,0,0,.08); }
+  </style>
+</head>
+<body data-style="bento-grid">
+  <script src="../assets/landing.js"></script>
+  <script src="../assets/styles-data.js"></script>
+  <script src="../assets/hud.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morphodex — le catalogue des styles d'interface</title>
+  <meta name="description" content="Un même produit fictif refait dans 10 styles graphiques : skeuomorphisme, néomorphisme, glassmorphisme, claymorphisme, minimalisme, maximalisme, brutalisme, liquid glass, bento grid, spatial UI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/shell.css" />
+</head>
+<body>
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <span class="kicker">Le catalogue des styles d'interface</span>
+      <span class="kicker kicker--right">Éd. 2026 · 10 spécimens</span>
+    </div>
+    <h1 class="wordmark">Morphodex</h1>
+    <div class="masthead-rule"></div>
+    <p class="lede">
+      Dix manières de dessiner exactement la même chose. On a pris une landing
+      fictive — l'appli&nbsp;<em>Nimbus</em> — et on l'a refaite à l'identique dans
+      chaque style graphique. Cliquez un spécimen pour le voir grandeur nature,
+      et ouvrez sa&nbsp;<span class="ttag">fiche</span> pour le rappel : définition,
+      traits, pièges, exemples.
+    </p>
+  </header>
+
+  <main class="catalog" id="catalog" aria-label="Catalogue des styles"></main>
+
+  <footer class="colophon">
+    <div class="colophon-rule"></div>
+    <div class="colophon-row">
+      <span>Morphodex</span>
+      <span>Un aide-mémoire visuel · My-Monkey</span>
+      <span>← / → pour naviguer · <b>i</b> pour la fiche</span>
+    </div>
+  </footer>
+
+  <script src="assets/styles-data.js"></script>
+  <script src="assets/gallery.js"></script>
+</body>
+</html>

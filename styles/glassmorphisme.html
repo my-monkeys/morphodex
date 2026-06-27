@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus · Glassmorphisme — Morphodex</title>
+  <link rel="stylesheet" href="../assets/landing-base.css" />
+  <link rel="stylesheet" href="../assets/hud.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ====== PEAU : GLASSMORPHISME ======
+       Panneaux de verre dépoli (backdrop-blur) sur un fond
+       multicolore qui transparaît. Bordure claire = bord du verre. */
+    :root { --line: rgba(255,255,255,.3); }
+    body { font-family: "Outfit", system-ui, sans-serif; color: #fff; background: #6a3bd6; }
+
+    .bg { background: linear-gradient(135deg, #7b2ff7 0%, #2f80ed 45%, #ec4899 100%); }
+    .bg span { border-radius: 50%; filter: blur(75px); opacity: .8; }
+    .bg-1 { width: 46vw; height: 46vw; background: #ffd166; top: -8%; left: -6%; }
+    .bg-2 { width: 42vw; height: 42vw; background: #06d6a0; bottom: -12%; right: -4%; top: auto; }
+    .bg-3 { width: 38vw; height: 38vw; background: #ff5d8f; top: 40%; left: 42%; }
+
+    .surface { background: rgba(255,255,255,.13); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); border: 1px solid rgba(255,255,255,.32); box-shadow: 0 10px 36px rgba(20,10,60,.28), inset 0 1px 0 rgba(255,255,255,.4); }
+
+    .nav { padding: 12px 14px 12px 22px; border-radius: 18px; }
+    .brand { font-weight: 700; font-size: 19px; }
+    .brand-logo { width: 34px; height: 34px; border-radius: 11px; font-size: 17px; background: rgba(255,255,255,.22); border: 1px solid rgba(255,255,255,.5); }
+    .nav-links a { color: rgba(255,255,255,.92); font-size: 14px; font-weight: 500; padding: 8px 15px; border-radius: 11px; }
+    .nav-links a:hover { background: rgba(255,255,255,.16); }
+
+    .btn { font-weight: 600; font-size: 15px; color: #fff; padding: 12px 24px; border-radius: 13px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background .15s, transform .15s; }
+    .btn:hover { background: rgba(255,255,255,.28); transform: translateY(-1px); }
+    .btn-primary { background: rgba(255,255,255,.92); color: #6a2cc8; border-color: transparent; }
+    .btn-primary:hover { background: #fff; }
+    .nav-cta { padding: 9px 18px; }
+
+    .eyebrow { font-size: 12px; font-weight: 600; padding: 8px 17px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+    .hero-title { font-weight: 700; }
+    .accent { color: #ffe27a; }
+    .hero-sub, .section-sub { color: rgba(255,255,255,.9); font-weight: 300; }
+    .hero-trust { color: rgba(255,255,255,.9); font-size: 14px; }
+    .stars .ic { fill: #ffe27a; stroke: #ffe27a; }
+
+    .appwin { border-radius: 20px; }
+    .appbar { border-bottom: 1px solid rgba(255,255,255,.2); }
+    .appbar-dot { background: rgba(255,255,255,.45); }
+    .app-addr { font-size: 12px; color: rgba(255,255,255,.8); }
+    .app-side { border-right: 1px solid rgba(255,255,255,.2); }
+    .app-side a { color: rgba(255,255,255,.85); font-size: 12.5px; border-radius: 10px; }
+    .app-side a.on { background: rgba(255,255,255,.2); color: #fff; }
+    .app-note { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.26); border-radius: 12px; }
+    .app-note[data-tag]::before { content: attr(data-tag); display: inline-block; font-size: 10px; padding: 2px 9px; border-radius: 999px; background: rgba(255,255,255,.25); margin-bottom: 7px; }
+    .app-note-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .app-note-text { font-size: 11.5px; color: rgba(255,255,255,.82); }
+    .app-graph .edge { stroke: rgba(255,255,255,.7); opacity: 1; } .app-graph .node { fill: #fff; }
+
+    .trustbar-label { color: rgba(255,255,255,.85); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+    .trust-logos b { color: rgba(255,255,255,.78); font-size: 19px; font-weight: 600; }
+
+    .section-kicker { color: #ffe27a; font-weight: 600; }
+    .section-title { font-weight: 700; }
+
+    .feature { border-radius: 22px; padding: 30px 26px; }
+    .feature-icon { width: 56px; height: 56px; border-radius: 16px; font-size: 25px; margin-bottom: 18px; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.4); }
+    .feature-title { font-weight: 600; margin-bottom: 9px; }
+    .feature-text { font-size: 15px; color: rgba(255,255,255,.85); font-weight: 300; }
+
+    .spotlight { border-radius: 26px; padding: 42px; }
+    .spotlight-title { font-weight: 700; margin-bottom: 14px; }
+    .spotlight-text { color: rgba(255,255,255,.88); font-weight: 300; margin-bottom: 20px; font-size: 16px; }
+    .checks li { font-size: 15px; } .checks .ic { color: #8effd6; }
+    .spotlight-visual { border-radius: 18px; }
+    .spotlight-visual .edge { stroke: rgba(255,255,255,.55); }
+    .node-a { fill: #ffd166; } .node-b { fill: #fff; } .node-c { fill: #06d6a0; } .node-d { fill: #ff5d8f; } .node-e { fill: #a78bff; }
+
+    .step { border-radius: 22px; padding: 30px 26px; }
+    .step-num { font-size: 12px; font-weight: 700; letter-spacing: .1em; color: #ffe27a; }
+    .step-icon { width: 50px; height: 50px; border-radius: 15px; font-size: 22px; margin: 16px 0 14px; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.4); }
+    .step-title { font-weight: 600; margin-bottom: 9px; }
+    .step-text { font-size: 14.5px; color: rgba(255,255,255,.85); font-weight: 300; }
+
+    .stats { border-radius: 24px; padding: 44px; }
+    .stat-num { font-weight: 700; }
+    .stat-label { font-size: 13.5px; color: rgba(255,255,255,.82); font-weight: 300; }
+
+    .quote { border-radius: 26px; padding: 48px; }
+    .quote-text { font-weight: 400; }
+    .quote-text .accent { color: #ffe27a; }
+    .quote-avatar { background: linear-gradient(150deg, #ffd166, #ff5d8f); border: 1px solid rgba(255,255,255,.4); }
+    .quote-name { font-size: 15px; } .quote-role { font-size: 13px; color: rgba(255,255,255,.82); }
+
+    .cta { border-radius: 30px; padding: 64px 30px; }
+    .cta-title { font-weight: 700; margin-bottom: 14px; }
+    .cta-text { font-size: 18px; color: rgba(255,255,255,.88); font-weight: 300; margin-bottom: 28px; }
+
+    .site-footer { margin-top: 50px; }
+    .foot-brand .brand { margin-bottom: 14px; }
+    .foot-tagline { color: rgba(255,255,255,.85); font-weight: 300; font-size: 14px; max-width: 240px; }
+    .foot-col h6 { color: rgba(255,255,255,.85); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+    .foot-col a { color: rgba(255,255,255,.82); font-size: 14.5px; margin-bottom: 10px; }
+    .foot-col a:hover { color: #fff; }
+    .foot-bottom { color: rgba(255,255,255,.78); font-size: 13px; font-weight: 300; margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.18); }
+  </style>
+</head>
+<body data-style="glassmorphisme">
+  <script src="../assets/landing.js"></script>
+  <script src="../assets/styles-data.js"></script>
+  <script src="../assets/hud.js"></script>
+</body>
+</html>
