@@ -109,6 +109,22 @@
     .foot-bottom { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 13px; color: var(--dim); }
 
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* Composants */
+    .kit { border-radius: 30px; }
+    .field-label { color: var(--txt); }
+    .input, .select { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 12px; color: var(--txt); }
+    .input::placeholder { color: var(--dim); }
+    .select option { color: #222; }
+    .input:focus, .select:focus { border-color: rgba(167,139,250,.8); background: rgba(255,255,255,.12); }
+    .switch-track { background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.2); }
+    .switch input:checked ~ .switch-track { background: linear-gradient(160deg, rgba(150,120,255,.9), rgba(90,150,255,.8)); }
+    .switch-thumb { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.45); }
+    .switch-state { color: var(--dim); }
+    .choice { color: var(--txt); }
+    .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: var(--accent); }
+    .chip { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: var(--txt); }
+    .chip-on { background: rgba(167,139,250,.4); border-color: rgba(255,255,255,.35); color: #fff; }
   </style>
   <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6c86cae6-7768-440f-84f7-309411fe825c" data-domains="morphodex.my-monkey.fr"></script>
 </head>

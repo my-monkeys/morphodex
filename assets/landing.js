@@ -127,6 +127,29 @@
         "</div>" +
       "</section>" +
 
+      // COMPOSANTS — vitrine des briques d'UI dans le style courant
+      '<section class="section" id="composants">' +
+        '<div class="section-head">' +
+          '<span class="section-kicker">Le style en détail</span>' +
+          '<h2 class="section-title">Chaque composant, dans ce style</h2>' +
+          '<p class="section-sub">Champs, menus, interrupteurs, cases à cocher : les briques d\'interface, habillées pareil.</p>' +
+        "</div>" +
+        '<div class="kit surface">' +
+          '<div class="kit-grid">' +
+            '<label class="field"><span class="field-label">Adresse e-mail</span><input class="input" type="email" placeholder="vous@exemple.fr" /></label>' +
+            '<label class="field"><span class="field-label">Espace de travail</span><select class="select"><option>Perso</option><option>Équipe produit</option><option>Public</option></select></label>' +
+            '<div class="field"><span class="field-label">Rappels intelligents</span><label class="switch"><input type="checkbox" checked /><span class="switch-track"><span class="switch-thumb"></span></span><span class="switch-state">Activés</span></label></div>' +
+            '<div class="field"><span class="field-label">Recherche par</span><label class="choice"><input type="radio" name="mode" checked /> <span>Mots-clés</span></label><label class="choice"><input type="radio" name="mode" /> <span>Sémantique</span></label></div>' +
+            '<div class="field"><span class="field-label">Capture</span><label class="choice"><input type="checkbox" checked /> <span>Hors-ligne</span></label><label class="choice"><input type="checkbox" /> <span>Photo &amp; OCR</span></label></div>' +
+            '<label class="field"><span class="field-label">Densité du graphe</span><input class="range" type="range" min="0" max="100" value="68" /></label>' +
+          "</div>" +
+          '<div class="kit-foot">' +
+            '<div class="chips"><span class="chip chip-on">Idées</span><span class="chip">Projets</span><span class="chip">Lectures</span><span class="chip">Rappels</span></div>' +
+            '<div class="kit-actions"><button class="btn">Annuler</button><button class="btn btn-primary">Enregistrer</button></div>' +
+          "</div>" +
+        "</div>" +
+      "</section>" +
+
       // MÉTHODE
       '<section class="section" id="methode">' +
         '<div class="section-head">' +
