@@ -99,19 +99,20 @@
     .foot-col a:hover { color: var(--violet); }
     .foot-bottom { color: #a890c4; font-size: 13px; margin-top: 36px; }
 
-    /* Composants */
+    /* Composants — champ pâte à modeler (pastel + triple ombre) */
     .kit { border-radius: 36px; }
     .field-label { color: var(--strong); }
-    .input, .select { background: #fff; border: none; border-radius: 16px; color: var(--strong); box-shadow: inset -3px -3px 7px rgba(160,120,200,.16), inset 3px 3px 7px #fff, 4px 5px 10px rgba(150,115,200,.18); }
-    .input:focus, .select:focus { box-shadow: inset 2px 2px 6px rgba(160,120,200,.25), 0 0 0 3px rgba(157,123,255,.3); }
-    .switch-track { background: #efe6f7; box-shadow: inset -2px -2px 5px rgba(160,120,200,.22), inset 2px 2px 5px #fff; }
-    .switch input:checked ~ .switch-track { background: var(--violet); }
-    .switch-thumb { background: #fff; box-shadow: 2px 2px 5px rgba(150,115,200,.45); }
+    .input, .select { background: #efe9ff; border: none; border-radius: 22px; color: var(--strong); box-shadow: 0 10px 24px rgba(126,87,255,.28), inset 5px 5px 11px rgba(120,80,180,.18), inset -5px -5px 11px rgba(255,255,255,.9); }
+    .input::placeholder { color: #9c93c4; }
+    .input:focus, .select:focus { box-shadow: 0 14px 30px rgba(126,87,255,.42), inset 7px 7px 14px rgba(120,80,180,.22), inset -7px -7px 14px rgba(255,255,255,.95); }
+    .switch-track { background: #e7defb; box-shadow: inset 3px 3px 7px rgba(120,80,180,.25), inset -3px -3px 7px #fff; }
+    .switch input:checked ~ .switch-track { background: var(--violet); box-shadow: inset 3px 3px 7px rgba(70,35,130,.4); }
+    .switch-thumb { background: #fff; box-shadow: inset 0 3px 5px rgba(255,255,255,.7), inset 0 -3px 6px rgba(0,0,0,.15), 2px 3px 6px rgba(150,115,200,.45); }
     .switch-state { color: var(--txt); }
     .choice { color: var(--txt); }
     .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: var(--violet); }
-    .chip { background: #fff; color: var(--txt); box-shadow: inset -2px -2px 5px rgba(160,120,200,.15), inset 2px 2px 5px #fff, 3px 4px 8px rgba(150,115,200,.18); }
-    .chip-on { background: var(--pink); color: #fff; box-shadow: 3px 4px 8px rgba(255,133,161,.5); }
+    .chip { background: #fff; color: var(--txt); box-shadow: 0 6px 14px rgba(150,115,200,.25), inset -2px -2px 5px rgba(120,80,180,.12), inset 2px 2px 5px #fff; }
+    .chip-on { background: var(--pink); color: #fff; box-shadow: 0 8px 16px rgba(255,133,161,.5), inset 0 -3px 6px rgba(170,40,70,.3), inset 0 3px 5px rgba(255,255,255,.4); }
   </style>
   <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6c86cae6-7768-440f-84f7-309411fe825c" data-domains="morphodex.my-monkey.fr"></script>
 </head>

@@ -119,11 +119,12 @@
     .foot-col a:hover { color: var(--mint); }
     .foot-bottom { font-weight: 700; font-size: 13px; color: #111; background: var(--lime); border: 4px solid #111; padding: 16px; margin-top: 0; }
 
-    /* Composants */
+    /* Composants — neobrutalism (bordure + hard shadow colorée) */
     .kit { border-radius: 0; }
     .field-label { font-family: "Archivo Black"; text-transform: uppercase; font-size: 12px; color: #111; }
-    .input, .select { background: #fff; border: 3px solid #111; border-radius: 0; color: #111; font-family: "Space Mono", monospace; box-shadow: 4px 4px 0 #111; }
-    .input:focus, .select:focus { box-shadow: 4px 4px 0 var(--pink); }
+    .input, .select { background: #fff; border: 3px solid #111; border-radius: 5px; color: #111; font-family: "Space Mono", monospace; box-shadow: 5px 5px 0 0 #111; }
+    .input::placeholder { color: rgba(0,0,0,.5); }
+    .input:focus, .select:focus { box-shadow: 5px 5px 0 0 var(--pink); }
     .switch-track { background: #fff; border: 3px solid #111; width: 52px; height: 30px; }
     .switch input:checked ~ .switch-track { background: var(--lime); }
     .switch-thumb { background: #111; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 0; }
@@ -131,7 +132,7 @@
     .switch-state { font-family: "Archivo Black"; text-transform: uppercase; font-size: 12px; color: #111; }
     .choice { font-weight: 700; color: #111; }
     .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: var(--pink); width: 20px; height: 20px; }
-    .chip { background: var(--mint); border: 3px solid #111; color: #111; border-radius: 0; font-weight: 700; }
+    .chip { background: var(--mint); border: 3px solid #111; color: #111; border-radius: 5px; font-weight: 700; box-shadow: 3px 3px 0 0 #111; }
     .chip-on { background: var(--pink); color: #fff; }
   </style>
   <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6c86cae6-7768-440f-84f7-309411fe825c" data-domains="morphodex.my-monkey.fr"></script>

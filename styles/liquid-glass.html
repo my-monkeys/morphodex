@@ -117,20 +117,20 @@
 
     @media (prefers-reduced-motion: reduce) { .bg span { animation: none; } html { scroll-behavior: auto; } }
 
-    /* Composants */
+    /* Composants — Liquid Glass (specular asymétrique + lensing) */
     .kit { border-radius: 28px; }
     .field-label { color: var(--txt); }
-    .input, .select { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 12px; color: var(--txt); }
+    .input, .select { background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.04)); -webkit-backdrop-filter: blur(10px) saturate(180%) brightness(1.08); backdrop-filter: blur(10px) saturate(180%) brightness(1.08); border: 1px solid rgba(255,255,255,.18); border-radius: 18px; color: var(--txt); box-shadow: inset 1px 1px 1px rgba(255,255,255,.6), inset -1px -1px 1px rgba(255,255,255,.12), inset 0 0 14px rgba(255,255,255,.08), 0 8px 22px rgba(0,0,0,.2); }
     .input::placeholder { color: var(--dim); }
     .select option { color: #222; }
-    .input:focus, .select:focus { border-color: rgba(159,208,255,.7); background: rgba(255,255,255,.13); }
-    .switch-track { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.18); }
-    .switch input:checked ~ .switch-track { background: linear-gradient(135deg, rgba(90,170,255,.85), rgba(170,107,255,.8)); }
-    .switch-thumb { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.35); }
+    .input:focus, .select:focus { border-color: rgba(159,208,255,.5); box-shadow: inset 1px 1px 2px rgba(255,255,255,.8), inset 0 0 18px rgba(255,255,255,.14), 0 0 0 4px rgba(159,208,255,.14), 0 10px 26px rgba(0,0,0,.24); }
+    .switch-track { background: linear-gradient(rgba(255,255,255,.08), rgba(255,255,255,.16)); border: 1px solid rgba(255,255,255,.2); box-shadow: inset 0 1px 2px rgba(0,0,0,.25); }
+    .switch input:checked ~ .switch-track { background: linear-gradient(135deg, rgba(90,170,255,.9), rgba(170,107,255,.85)); box-shadow: inset 1px 1px 1px rgba(255,255,255,.5); }
+    .switch-thumb { background: #fff; box-shadow: inset 0 1px 1px rgba(255,255,255,.9), 0 2px 5px rgba(0,0,0,.4); }
     .switch-state { color: var(--dim); }
     .choice { color: var(--txt); }
     .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: #8ab4ff; }
-    .chip { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); color: var(--txt); }
+    .chip { background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.05)); border: 1px solid rgba(255,255,255,.2); color: var(--txt); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); }
     .chip-on { background: linear-gradient(135deg, rgba(90,170,255,.6), rgba(170,107,255,.55)); border-color: rgba(255,255,255,.3); color: #fff; }
   </style>
   <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6c86cae6-7768-440f-84f7-309411fe825c" data-domains="morphodex.my-monkey.fr"></script>

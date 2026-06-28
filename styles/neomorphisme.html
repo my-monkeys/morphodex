@@ -99,20 +99,21 @@
     .foot-col a:hover { color: var(--accent); }
     .foot-bottom { color: #9aa3b3; font-size: 13px; margin-top: 36px; }
 
-    /* Composants */
+    /* Composants — input concave (pressé) */
     .kit { border-radius: 24px; }
     .field-label { color: var(--strong); }
-    .input, .select { background: var(--bg); border: none; border-radius: 12px; color: var(--strong); box-shadow: inset -3px -3px 7px var(--light), inset 3px 3px 7px var(--dark); }
-    .input:focus, .select:focus { box-shadow: inset -2px -2px 5px var(--light), inset 2px 2px 5px var(--dark), 0 0 0 2px rgba(109,93,252,.4); }
-    .switch-track { background: var(--bg); box-shadow: inset -2px -2px 5px var(--light), inset 2px 2px 5px var(--dark); }
-    .switch input:checked ~ .switch-track { background: linear-gradient(145deg, #7d6efd, #5a48f0); }
-    .switch-thumb { background: var(--bg); box-shadow: -2px -2px 4px var(--light), 2px 2px 4px var(--dark); }
-    .switch input:checked ~ .switch-track .switch-thumb { background: #fff; }
+    .input, .select { background: var(--bg); border: none; border-radius: 14px; color: var(--strong); box-shadow: inset 3px 3px 6px var(--dark), inset -3px -3px 6px var(--light); }
+    .input::placeholder { color: #aab1bd; }
+    .input:focus, .select:focus { box-shadow: inset 4px 4px 8px var(--dark), inset -4px -4px 8px var(--light), 0 0 0 2px rgba(109,93,252,.35); }
+    .switch-track { background: var(--bg); box-shadow: inset 2px 2px 5px var(--dark), inset -2px -2px 5px var(--light); }
+    .switch input:checked ~ .switch-track { background: linear-gradient(145deg, #7d6efd, #5a48f0); box-shadow: inset 2px 2px 5px rgba(60,30,120,.5); }
+    .switch-thumb { background: var(--bg); box-shadow: 2px 2px 4px var(--dark), -2px -2px 4px var(--light); }
+    .switch input:checked ~ .switch-track .switch-thumb { background: #fff; box-shadow: 1px 1px 3px rgba(60,30,120,.4); }
     .switch-state { color: var(--txt); }
     .choice { color: var(--txt); }
     .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: var(--accent); }
-    .chip { background: var(--bg); color: var(--txt); box-shadow: -3px -3px 7px var(--light), 3px 3px 7px var(--dark); }
-    .chip-on { color: var(--accent); box-shadow: inset -2px -2px 5px var(--light), inset 2px 2px 5px var(--dark); }
+    .chip { background: var(--bg); color: var(--txt); box-shadow: 3px 3px 6px var(--dark), -3px -3px 6px var(--light); }
+    .chip-on { color: var(--accent); box-shadow: inset 2px 2px 5px var(--dark), inset -2px -2px 5px var(--light); }
   </style>
   <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6c86cae6-7768-440f-84f7-309411fe825c" data-domains="morphodex.my-monkey.fr"></script>
 </head>

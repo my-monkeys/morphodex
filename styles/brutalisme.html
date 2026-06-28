@@ -108,11 +108,12 @@
     .foot-col a { color: #0000ee; font-size: 15px; margin-bottom: 8px; text-decoration: underline; }
     .foot-bottom { font-family: "Courier New", monospace; font-size: 12px; text-transform: uppercase; color: #000; margin-top: 30px; border-top: 3px solid #000; padding-top: 18px; }
 
-    /* Composants */
+    /* Composants — champ terminal (focus jaune) */
     .kit { border-radius: 0; box-shadow: 10px 10px 0 #000; }
     .field-label { font-family: "Courier New", monospace; font-size: 13px; text-transform: uppercase; color: #000; }
-    .input, .select { background: #fff; border: 3px solid #000; border-radius: 0; color: #000; font-family: "Courier New", monospace; }
-    .input:focus, .select:focus { background: #ffffcc; }
+    .input, .select { background: #fff; border: 3px solid #000; border-radius: 0; color: #000; font-family: "Courier New", monospace; box-shadow: none; caret-color: #000; }
+    .input::placeholder { color: #000; opacity: .45; text-transform: lowercase; }
+    .input:focus, .select:focus { background: #ffff00; box-shadow: inset 0 0 0 2px #000; }
     .switch-track { background: #fff; border: 3px solid #000; }
     .switch input:checked ~ .switch-track { background: #1a1aff; }
     .switch-thumb { background: #000; border-radius: 0; }

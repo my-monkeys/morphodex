@@ -116,14 +116,15 @@
     .foot-col a:hover { color: var(--blue); }
     .foot-bottom { color: var(--soft); font-size: 13px; margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(0,0,0,.08); }
 
-    /* Composants */
+    /* Composants — input shadcn (ring focus 3px) */
     .kit { border-radius: 30px; }
     .field-label { color: var(--ink); }
-    .input, .select { background: #f6f7f9; border: 1px solid rgba(0,0,0,.08); border-radius: 12px; color: var(--ink); }
-    .input:focus, .select:focus { border-color: var(--blue); background: #fff; box-shadow: 0 0 0 3px rgba(10,132,255,.15); }
-    .switch-track { background: #d7dae0; }
-    .switch input:checked ~ .switch-track { background: var(--blue); }
-    .switch-thumb { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+    .input, .select { background: #fff; border: 1px solid #e4e4e7; border-radius: 8px; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+    .input::placeholder { color: #a1a1aa; }
+    .input:focus, .select:focus { border-color: #a1a1aa; box-shadow: 0 0 0 3px rgba(161,161,170,.4); }
+    .switch-track { background: #e4e4e7; }
+    .switch input:checked ~ .switch-track { background: var(--ink); }
+    .switch-thumb { background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
     .switch-state { color: var(--soft); }
     .choice { color: var(--ink); }
     .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: var(--blue); }
