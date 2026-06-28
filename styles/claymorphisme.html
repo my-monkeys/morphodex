@@ -113,6 +113,12 @@
     .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: var(--violet); }
     .chip { background: #fff; color: var(--txt); box-shadow: 0 6px 14px rgba(150,115,200,.25), inset -2px -2px 5px rgba(120,80,180,.12), inset 2px 2px 5px #fff; }
     .chip-on { background: var(--pink); color: #fff; box-shadow: 0 8px 16px rgba(255,133,161,.5), inset 0 -3px 6px rgba(170,40,70,.3), inset 0 3px 5px rgba(255,255,255,.4); }
+    /* Cases & radios custom */
+    .choice input[type=checkbox], .choice input[type=radio] { -webkit-appearance:none; appearance:none; margin:0; width:21px; height:21px; flex:none; position:relative; cursor:pointer; border:none; background:#efe9ff; border-radius:8px; box-shadow:inset 2px 2px 5px rgba(120,80,180,.2), inset -2px -2px 5px #fff; }
+    .choice input[type=radio] { border-radius:50%; }
+    .choice input[type=checkbox]:checked, .choice input[type=radio]:checked { background:var(--violet); box-shadow:inset 1px 1px 3px rgba(70,35,130,.4); }
+    .choice input[type=checkbox]:checked::after { content:""; position:absolute; left:50%; top:47%; width:5px; height:9px; border:solid #fff; border-width:0 2px 2px 0; transform:translate(-50%,-55%) rotate(45deg); }
+    .choice input[type=radio]:checked::after { content:""; position:absolute; inset:6px; border-radius:50%; background:#fff; }
   </style>
   <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6c86cae6-7768-440f-84f7-309411fe825c" data-domains="morphodex.my-monkey.fr"></script>
 </head>

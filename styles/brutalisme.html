@@ -123,6 +123,12 @@
     .kit-grid input[type=checkbox], .kit-grid input[type=radio], .range { accent-color: #1a1aff; width: 18px; height: 18px; }
     .chip { background: #fff; border: 2px solid #000; color: #000; border-radius: 0; }
     .chip-on { background: #1a1aff; color: #fff; }
+    /* Cases & radios custom — carré brut */
+    .choice input[type=checkbox], .choice input[type=radio] { -webkit-appearance:none; appearance:none; margin:0; width:20px; height:20px; flex:none; position:relative; cursor:pointer; border:3px solid #000; background:#fff; border-radius:0; }
+    .choice input[type=radio] { border-radius:50%; }
+    .choice input[type=checkbox]:checked, .choice input[type=radio]:checked { background:#000; }
+    .choice input[type=checkbox]:checked::after { content:""; position:absolute; left:50%; top:45%; width:5px; height:10px; border:solid #fff; border-width:0 3px 3px 0; transform:translate(-50%,-55%) rotate(45deg); }
+    .choice input[type=radio]:checked::after { content:""; position:absolute; inset:3px; border-radius:50%; background:#fff; }
   </style>
   <script defer src="https://uuu.my-monkey.fr/u.js" data-website-id="6c86cae6-7768-440f-84f7-309411fe825c" data-domains="morphodex.my-monkey.fr"></script>
 </head>
