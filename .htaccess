@@ -1,0 +1,8 @@
+# Le HTML porte du CSS inline (les peaux de style) qui change à chaque déploiement.
+# Sans en-tête de cache, les navigateurs servaient l'ancien HTML (cache heuristique).
+# → on force la revalidation du HTML ; les assets versionnés (?v=) gardent leur cache long.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
